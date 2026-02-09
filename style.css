@@ -1,0 +1,1520 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* Hide phases by default */
+.phase {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.phase.active {
+    display: flex;
+}
+
+/* ==================== PHASE 1: ENTRANCE (ENHANCED!) ==================== */
+.entrance {
+    position: relative;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0515 50%, #0a0a0a 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Enhanced vignette effect */
+.entrance::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.9) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Rose petals in entrance */
+.entrance-petals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.entrance-petal {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    border-radius: 50% 0 50% 50%;
+    animation: entrancePetalFall linear infinite;
+    opacity: 0.4;
+    filter: blur(0.5px);
+}
+
+@keyframes entrancePetalFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Sparkles */
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+    animation: twinkle 3s infinite ease-in-out;
+    opacity: 0;
+    z-index: 0;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Falling hearts */
+.falling-heart {
+    position: absolute;
+    font-size: 30px;
+    color: rgba(220, 20, 60, 0.5);
+    animation: fall linear infinite;
+    opacity: 0;
+    transform-origin: center;
+    filter: blur(0.5px);
+    text-shadow: 0 0 8px rgba(220, 20, 60, 0.5);
+    z-index: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Center glow - BIG HEART (Enhanced!) */
+.glow {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 70px;
+    z-index: 3;
+}
+
+.heart-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    background: crimson;
+    animation: heartbeat 1.5s infinite ease-in-out;
+    filter: blur(40px);
+    opacity: 0.8;
+}
+
+.heart-outline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 140px;
+    color: #dc143c;
+    animation: heartbeat 1.5s infinite ease-in-out;
+    text-shadow: 0 0 40px rgba(220, 20, 60, 1),
+                 0 0 80px rgba(220, 20, 60, 0.7),
+                 0 0 120px rgba(220, 20, 60, 0.4);
+}
+
+/* Realistic heartbeat */
+@keyframes heartbeat {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    14% {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+    28% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    42% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Main text container (Enhanced!) */
+.entrance-text {
+    position: relative;
+    color: #f5f5dc;
+    font-size: 40px;
+    font-style: italic;
+    text-align: center;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(245, 245, 220, 0.6),
+                 0 0 40px rgba(255, 105, 180, 0.3);
+    padding: 0 20px;
+    z-index: 10;
+    min-height: 60px;
+}
+
+/* Typewriter text */
+#typewriterText {
+    display: inline;
+    color: #f5f5dc;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: #f5f5dc;
+    margin-left: 2px;
+    animation: blink 0.7s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.cursor-hidden {
+    display: none;
+}
+
+/* Enter prompt (Enhanced!) */
+.enter-prompt {
+    position: absolute;
+    bottom: 60px;
+    color: rgba(255, 182, 193, 0.7);
+    font-size: 16px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
+}
+
+.enter-prompt.visible {
+    animation: fadeInPrompt 2s ease-in forwards, pulse 2s infinite ease-in-out;
+}
+
+@keyframes fadeInPrompt {
+    to {
+        opacity: 0.7;
+    }
+}
+
+.enter-prompt:hover {
+    color: #ff69b4;
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== PHASE 2: CHOCOLATE GAME ==================== */
+.chocolate-game {
+    position: relative;
+    background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 50%, #1a0000 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Vignette for chocolate phase */
+.chocolate-game::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Header text */
+.game-header {
+    position: absolute;
+    top: 50px;
+    text-align: center;
+    z-index: 10;
+}
+
+.game-title {
+    color: #f5f5dc;
+    font-size: 38px;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(139, 69, 19, 0.8);
+    margin-bottom: 15px;
+    animation: fadeIn 1s ease-in;
+}
+
+.game-instruction {
+    color: rgba(245, 245, 220, 0.8);
+    font-size: 18px;
+    letter-spacing: 1px;
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chocolate counter */
+.chocolate-counter {
+    position: absolute;
+    top: 140px;
+    background: rgba(139, 69, 19, 0.3);
+    border: 2px solid rgba(139, 69, 19, 0.6);
+    padding: 15px 30px;
+    border-radius: 50px;
+    z-index: 10;
+    animation: fadeIn 2s ease-in;
+}
+
+.counter-text {
+    color: #f5f5dc;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(139, 69, 19, 0.8);
+}
+
+.counter-number {
+    color: #D2691E;
+    font-size: 32px;
+    text-shadow: 0 0 15px rgba(210, 105, 30, 0.9);
+}
+
+/* Falling chocolate */
+.chocolate {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    cursor: pointer;
+    animation: chocolateFall linear;
+    z-index: 5;
+    transition: transform 0.1s;
+    filter: drop-shadow(0 5px 10px rgba(139, 69, 19, 0.6));
+}
+
+.chocolate:hover {
+    transform: scale(1.2);
+}
+
+@keyframes chocolateFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Catch effect */
+@keyframes catchEffect {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2) translateY(-50px);
+        opacity: 0;
+    }
+}
+
+.caught {
+    animation: catchEffect 0.5s ease-out forwards !important;
+    pointer-events: none;
+}
+
+/* Celebration particles */
+.celebration-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #D2691E;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Completion message */
+.completion-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.completion-message.show {
+    animation: completionAppear 1s ease-out forwards;
+    pointer-events: all;
+}
+
+@keyframes completionAppear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.completion-text {
+    color: #f5f5dc;
+    font-size: 42px;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-shadow: 0 0 30px rgba(210, 105, 30, 0.9);
+    margin-bottom: 30px;
+}
+
+.continue-btn {
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    border: 2px solid #f5f5dc;
+    color: #f5f5dc;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.5);
+}
+
+.continue-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(210, 105, 30, 0.7);
+}
+
+/* ==================== PHASE 3: TEDDY DAY ==================== */
+.teddy-day {
+    position: relative;
+    background: linear-gradient(135deg, #1a0a1a 0%, #0a0a1a 50%, #1a0520 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.teddy-day::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(220, 20, 60, 0.1) 0%, rgba(138, 43, 226, 0.15) 40%, rgba(0,0,0,0.9) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Teddy Day Header */
+.teddy-header {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    z-index: 10;
+    animation: fadeIn 1s ease-in;
+}
+
+.teddy-title {
+    color: #f5f5dc;
+    font-size: 48px;
+    font-style: italic;
+    letter-spacing: 3px;
+    text-shadow: 0 0 30px rgba(220, 20, 60, 0.6), 0 0 50px rgba(138, 43, 226, 0.4);
+    margin-bottom: 15px;
+}
+
+.teddy-subtitle {
+    color: rgba(245, 245, 220, 0.8);
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/* Teddy Container */
+.teddy-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    z-index: 10;
+    max-width: 1200px;
+}
+
+/* Individual Teddy */
+.teddy-item {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: teddyAppear 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.teddy-item:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.teddy-item:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.teddy-item:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+@keyframes teddyAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.teddy-item:hover {
+    transform: scale(1.1);
+}
+
+.teddy-icon {
+    font-size: 120px;
+    filter: drop-shadow(0 10px 20px rgba(220, 20, 60, 0.4));
+    margin-bottom: 20px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.teddy-item:hover .teddy-icon {
+    transform: rotate(-10deg);
+}
+
+.teddy-label {
+    color: #f5f5dc;
+    font-size: 22px;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(245, 245, 220, 0.5);
+    margin-top: 10px;
+}
+
+.gift-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #dc143c, #8B0000);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(220, 20, 60, 0.7);
+    animation: giftPulse 2s infinite ease-in-out;
+}
+
+@keyframes giftPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Gift Modal */
+.gift-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: modalFadeIn 0.5s ease-out;
+}
+
+.gift-modal.active {
+    display: flex;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.gift-content {
+    background: linear-gradient(135deg, #1a0a1a 0%, #2a1a2a 100%);
+    border: 3px solid #dc143c;
+    border-radius: 20px;
+    padding: 50px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(220, 20, 60, 0.5);
+    animation: giftContentAppear 0.6s ease-out;
+    position: relative;
+}
+
+@keyframes giftContentAppear {
+    0% {
+        transform: scale(0.5) rotateY(180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+.gift-emoji {
+    font-size: 80px;
+    margin-bottom: 20px;
+    display: block;
+    animation: giftBounce 1s ease-in-out infinite;
+}
+
+@keyframes giftBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* GIF Container */
+.gift-gif {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.4);
+    border: 3px solid rgba(220, 20, 60, 0.3);
+}
+
+.gift-gif img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Special animation for hug */
+.hug-animation {
+    animation: hugAnimation 2s ease-in-out infinite !important;
+}
+
+@keyframes hugAnimation {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Special animation for kiss */
+.kiss-animation {
+    animation: kissAnimation 1.5s ease-in-out infinite !important;
+}
+
+@keyframes kissAnimation {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) scale(1.2);
+    }
+}
+
+.gift-title {
+    color: #f5f5dc;
+    font-size: 32px;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+    margin-bottom: 20px;
+}
+
+.gift-message {
+    color: rgba(245, 245, 220, 0.9);
+    font-size: 18px;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.close-modal {
+    background: linear-gradient(135deg, #dc143c, #8B0000);
+    border: 2px solid #f5f5dc;
+    color: #f5f5dc;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.close-modal:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.7);
+}
+
+/* Next Phase Button */
+.next-phase-btn {
+    position: fixed;
+    bottom: 50px;
+    background: linear-gradient(135deg, #dc143c, #8B0000);
+    border: 2px solid #f5f5dc;
+    color: #f5f5dc;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 50;
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.5);
+    animation: fadeIn 2s ease-in;
+}
+
+.next-phase-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(220, 20, 60, 0.8);
+}
+
+/* Fade out */
+.fade-out {
+    animation: fadeOut 1.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+/* ==================== PHASE 4: PROPOSAL ==================== */
+.proposal-phase {
+    position: relative;
+    background: radial-gradient(circle at center, #1a0a1f 0%, #0a0515 50%, #000000 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Heart Formation Overlay */
+.heart-formation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart-formation-overlay.active {
+    display: flex;
+}
+
+#heartCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.formation-complete {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 2001;
+}
+
+.formation-complete.show {
+    animation: heartReveal 2s ease-out forwards;
+}
+
+@keyframes heartReveal {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.formed-heart {
+    font-size: 200px;
+    filter: drop-shadow(0 0 50px rgba(255, 0, 0, 1))
+            drop-shadow(0 0 100px rgba(255, 0, 0, 0.8));
+    animation: finalHeartPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes finalHeartPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Floating hearts background */
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 40px;
+    color: rgba(255, 182, 193, 0.6);
+    animation: floatUp 15s infinite ease-in;
+    opacity: 0;
+    z-index: 0;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-20vh) scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Rose petals */
+.rose-petals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.rose-petal {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    border-radius: 50% 0 50% 50%;
+    animation: petalFall linear infinite;
+    opacity: 0.7;
+    filter: blur(0.5px);
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Proposal container */
+.proposal-container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 40px;
+}
+
+/* Heart rings */
+.heart-rings {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 40px;
+}
+
+.heart-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid rgba(255, 105, 180, 0.4);
+    border-radius: 50%;
+    animation: ringPulse 3s infinite ease-in-out;
+}
+
+.ring-1 {
+    width: 100px;
+    height: 100px;
+    animation-delay: 0s;
+}
+
+.ring-2 {
+    width: 150px;
+    height: 150px;
+    animation-delay: 1s;
+}
+
+.ring-3 {
+    width: 200px;
+    height: 200px;
+    animation-delay: 2s;
+}
+
+@keyframes ringPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.center-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    animation: heartPulse 1.5s infinite ease-in-out;
+    filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.8));
+}
+
+@keyframes heartPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Proposal text */
+.proposal-title {
+    font-size: 56px;
+    color: #ffb6c1;
+    font-style: italic;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 30px rgba(255, 105, 180, 0.9),
+                 0 0 60px rgba(255, 20, 147, 0.6);
+    animation: titleGlow 2s infinite ease-in-out;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 30px rgba(255, 105, 180, 0.9),
+                     0 0 60px rgba(255, 20, 147, 0.6);
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(255, 105, 180, 1),
+                     0 0 80px rgba(255, 20, 147, 0.8),
+                     0 0 100px rgba(255, 105, 180, 0.5);
+    }
+}
+
+.proposal-subtitle {
+    font-size: 24px;
+    color: rgba(255, 182, 193, 0.9);
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.proposal-message {
+    margin-bottom: 50px;
+}
+
+.proposal-message p {
+    font-size: 22px;
+    color: #f5f5dc;
+    line-height: 2;
+    letter-spacing: 1px;
+    margin: 15px 0;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+.proposal-message p:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.proposal-message p:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.proposal-message p:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+.proposal-message .final-line {
+    font-size: 26px;
+    color: #ffb6c1;
+    font-weight: bold;
+    margin-top: 30px;
+    animation-delay: 2s;
+    text-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Answer buttons */
+.answer-buttons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    animation: fadeIn 1s ease-in 2.5s forwards;
+    opacity: 0;
+}
+
+.yes-button {
+    background: linear-gradient(135deg, #ff1493, #ff69b4, #ff1493);
+    background-size: 200% 200%;
+    border: 3px solid #fff;
+    color: #fff;
+    padding: 20px 50px;
+    border-radius: 60px;
+    font-size: 24px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 40px rgba(255, 20, 147, 0.6),
+                0 0 30px rgba(255, 105, 180, 0.4);
+    animation: buttonGlow 2s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@keyframes buttonGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+        box-shadow: 0 15px 40px rgba(255, 20, 147, 0.6),
+                    0 0 30px rgba(255, 105, 180, 0.4);
+    }
+    50% {
+        background-position: 100% 50%;
+        box-shadow: 0 20px 50px rgba(255, 20, 147, 0.8),
+                    0 0 40px rgba(255, 105, 180, 0.6),
+                    0 0 60px rgba(255, 20, 147, 0.4);
+    }
+}
+
+.yes-button:hover {
+    transform: scale(1.15) rotate(-2deg);
+    box-shadow: 0 25px 60px rgba(255, 20, 147, 0.9),
+                0 0 50px rgba(255, 105, 180, 0.7);
+}
+
+.btn-icon {
+    font-size: 28px;
+    animation: iconBounce 1s infinite ease-in-out;
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+.no-button {
+    background: linear-gradient(135deg, #555, #777);
+    border: 2px solid #999;
+    color: #ccc;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.no-button:hover {
+    animation: noDodge 0.3s ease-out forwards;
+}
+
+@keyframes noDodge {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(var(--dodge-x), var(--dodge-y));
+    }
+}
+
+/* Celebration overlay */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.3) 0%, rgba(0, 0, 0, 0.95) 100%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: celebrationFadeIn 1s ease-out;
+    overflow-y: auto;
+}
+
+.celebration-overlay.active {
+    display: flex;
+}
+
+@keyframes celebrationFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.celebration-content {
+    text-align: center;
+    z-index: 1001;
+    animation: celebrationPop 0.8s ease-out;
+    padding: 40px 20px;
+    max-width: 1200px;
+}
+
+@keyframes celebrationPop {
+    0% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.1) rotate(-10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* SHE SAID YES Title */
+.she-said-yes-title {
+    font-size: 72px;
+    color: #ff69b4;
+    font-style: italic;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 40px rgba(255, 20, 147, 1),
+                 0 0 80px rgba(255, 105, 180, 0.8);
+    animation: celebrationGlow 1.5s infinite ease-in-out;
+}
+
+@keyframes celebrationGlow {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 40px rgba(255, 20, 147, 1),
+                     0 0 80px rgba(255, 105, 180, 0.8);
+    }
+    50% {
+        transform: scale(1.05);
+        text-shadow: 0 0 60px rgba(255, 20, 147, 1),
+                     0 0 100px rgba(255, 105, 180, 1),
+                     0 0 120px rgba(255, 20, 147, 0.6);
+    }
+}
+
+/* Pudgy Penguin GIF Container */
+.penguin-gif-container {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(255, 20, 147, 0.6),
+                0 0 40px rgba(255, 105, 180, 0.4);
+    border: 4px solid #ff69b4;
+    animation: penguinPop 1s ease-out 0.5s forwards, penguinFloat 3s infinite ease-in-out 1.5s;
+    transform: scale(0);
+}
+
+@keyframes penguinPop {
+    0% {
+        transform: scale(0) rotate(-180deg);
+    }
+    70% {
+        transform: scale(1.1) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes penguinFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+.penguin-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.celebration-subtitle {
+    font-size: 24px;
+    color: #ffb6c1;
+    letter-spacing: 2px;
+    margin: 30px 0;
+    animation: fadeInUp 1s ease-out 1s forwards;
+    opacity: 0;
+}
+
+/* Memory Photos (ENHANCED WITH REAL IMAGES!) */
+.memory-photos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 50px 0;
+    padding: 0 20px;
+}
+
+.memory-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 3px solid #ff69b4;
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+    animation: photoFloat 1s ease-out forwards;
+    opacity: 0;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.memory-photo:nth-child(1) {
+    animation-delay: 1.5s;
+}
+
+.memory-photo:nth-child(2) {
+    animation-delay: 1.7s;
+}
+
+.memory-photo:nth-child(3) {
+    animation-delay: 1.9s;
+}
+
+.memory-photo:nth-child(4) {
+    animation-delay: 2.1s;
+}
+
+.memory-photo:nth-child(5) {
+    animation-delay: 2.3s;
+}
+
+.memory-photo:nth-child(6) {
+    animation-delay: 2.5s;
+}
+
+@keyframes photoFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotate(0deg) scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--rotate, 0deg)) scale(1);
+    }
+}
+
+.memory-photo:hover {
+    transform: scale(1.15) rotate(0deg) !important;
+    box-shadow: 0 15px 40px rgba(255, 20, 147, 0.7);
+    z-index: 10;
+}
+
+/* Memory image styling */
+.memory-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Add sparkle effect to photos */
+.memory-photo::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    animation: sparkleRotate 3s infinite ease-in-out;
+}
+
+@keyframes sparkleRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.3);
+    }
+}
+
+/* Fireworks */
+.fireworks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: fireworkExplode 1.5s ease-out forwards;
+}
+
+@keyframes fireworkExplode {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--fx), var(--fy)) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Explosion hearts */
+.explosion-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.explosion-heart {
+    position: absolute;
+    font-size: 30px;
+    animation: heartExplosion 2s ease-out forwards;
+    opacity: 1;
+}
+
+@keyframes heartExplosion {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--ex), var(--ey)) scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.next-journey-btn {
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    border: 3px solid #fff;
+    color: #fff;
+    padding: 18px 45px;
+    border-radius: 60px;
+    font-size: 22px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    box-shadow: 0 15px 40px rgba(255, 20, 147, 0.6);
+    animation: fadeIn 1s ease-in 2s forwards;
+    opacity: 0;
+}
+
+.next-journey-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 20px 50px rgba(255, 20, 147, 0.8);
+}

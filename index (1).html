@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Week Journey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ==================== PHASE 1: ENTRANCE ==================== -->
+    <div class="phase entrance active" id="phase1">
+        <!-- Sparkles -->
+        <div class="sparkles" id="sparkles1"></div>
+
+        <!-- Falling hearts background -->
+        <div class="falling-hearts" id="fallingHearts"></div>
+        
+        <!-- Rose petals in entrance -->
+        <div class="entrance-petals" id="entrancePetals"></div>
+
+        <!-- Center glow effect - BIG HEART -->
+        <div class="glow">
+            <div class="heart-glow"></div>
+            <div class="heart-outline">♥</div>
+        </div>
+
+        <!-- Main text with typewriter -->
+        <div class="entrance-text">
+            <span id="typewriterText"></span><span class="typewriter-cursor" id="cursor"></span>
+        </div>
+
+        <!-- Enter prompt -->
+        <p class="enter-prompt" id="enterPrompt">Click to enter our journey</p>
+    </div>
+
+    <!-- ==================== PHASE 2: CHOCOLATE GAME ==================== -->
+    <div class="phase chocolate-game" id="phase2">
+        <!-- Sparkles -->
+        <div class="sparkles" id="sparkles2"></div>
+
+        <!-- Game header -->
+        <div class="game-header">
+            <h1 class="game-title">🍫 Chocolate Day 🍫</h1>
+            <p class="game-instruction">Catch the falling chocolates!</p>
+        </div>
+
+        <!-- Chocolate counter -->
+        <div class="chocolate-counter">
+            <span class="counter-text">Collected: <span class="counter-number" id="chocolateCount">0</span>/5</span>
+        </div>
+
+        <!-- Chocolates will be added here dynamically -->
+        <div id="chocolateContainer"></div>
+
+        <!-- Completion message -->
+        <div class="completion-message" id="completionMessage">
+            <h2 class="completion-text">Sweet! 🍫✨<br>You collected them all!</h2>
+            <button class="continue-btn" id="continueBtn">Claim Your Gifts</button>
+        </div>
+    </div>
+
+    <!-- ==================== PHASE 3: TEDDY DAY ==================== -->
+    <div class="phase teddy-day" id="phase3">
+        <!-- Sparkles -->
+        <div class="sparkles" id="sparkles3"></div>
+
+        <!-- Header -->
+        <div class="teddy-header">
+            <h1 class="teddy-title">🧸 Here Are Your Gifts 🧸</h1>
+            <p class="teddy-subtitle">Click on each teddy to reveal your special gift</p>
+        </div>
+
+        <!-- Teddy Container -->
+        <div class="teddy-container">
+            <!-- Teddy 1: Promise Letter -->
+            <div class="teddy-item" data-teddy="1">
+                <div class="gift-badge">💌</div>
+                <span class="teddy-icon">🧸</span>
+                <p class="teddy-label">Promise Letter</p>
+            </div>
+
+            <!-- Teddy 2: Hug -->
+            <div class="teddy-item" data-teddy="2">
+                <div class="gift-badge">🤗</div>
+                <span class="teddy-icon">🧸</span>
+                <p class="teddy-label">Warm Hug</p>
+            </div>
+
+            <!-- Teddy 3: Kiss -->
+            <div class="teddy-item" data-teddy="3">
+                <div class="gift-badge">💋</div>
+                <span class="teddy-icon">🧸</span>
+                <p class="teddy-label">Sweet Kiss</p>
+            </div>
+        </div>
+
+        <!-- Next Phase Button -->
+        <button class="next-phase-btn" id="nextPhaseBtn">Continue Journey</button>
+    </div>
+
+    <!-- ==================== PHASE 4: WILL YOU BE MINE? ==================== -->
+    <div class="phase proposal-phase" id="phase4">
+        <!-- Heart Formation Animation (appears first) -->
+        <div class="heart-formation-overlay active" id="heartFormationOverlay">
+            <canvas id="heartCanvas"></canvas>
+            <div class="formation-complete" id="formationComplete">
+                <div class="formed-heart">❤️</div>
+            </div>
+        </div>
+
+        <!-- Floating hearts background -->
+        <div class="floating-hearts" id="floatingHearts"></div>
+        
+        <!-- Sparkles -->
+        <div class="sparkles" id="sparkles4"></div>
+        
+        <!-- Rose petals falling -->
+        <div class="rose-petals" id="rosePetals"></div>
+        
+        <!-- Main proposal container -->
+        <div class="proposal-container" id="proposalContainer" style="opacity: 0;">
+            <!-- Animated heart rings -->
+            <div class="heart-rings">
+                <div class="heart-ring ring-1"></div>
+                <div class="heart-ring ring-2"></div>
+                <div class="heart-ring ring-3"></div>
+                <div class="center-heart">💖</div>
+            </div>
+            
+            <!-- Proposal text -->
+            <div class="proposal-text">
+                <h1 class="proposal-title">Will You Be Mine?</h1>
+                <p class="proposal-subtitle">This Valentine's Day and Forever...</p>
+                <div class="proposal-message">
+                    <p>Every moment with you feels like magic ✨</p>
+                    <p>Every smile you give lights up my world 🌟</p>
+                    <p>Every heartbeat whispers your name 💗</p>
+                    <p class="final-line">So my dearest love, will you be my Valentine?</p>
+                </div>
+            </div>
+            
+            <!-- Answer buttons -->
+            <div class="answer-buttons">
+                <button class="yes-button" id="yesBtn">
+                    <span class="btn-icon">💝</span>
+                    <span class="btn-text">YES! Forever YES! 💕</span>
+                </button>
+                <button class="no-button" id="noBtn">
+                    <span class="btn-text">No...</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Celebration overlay (hidden initially) -->
+        <div class="celebration-overlay" id="celebrationOverlay">
+            <div class="celebration-content">
+                <h1 class="she-said-yes-title">SHE SAID YES! 💍</h1>
+                
+                <!-- Pudgy Penguin GIF -->
+                <div class="penguin-gif-container">
+                    <img src="https://media.giphy.com/media/D9j761FH8SYJLyW9WO/giphy.gif" alt="Celebration!" class="penguin-gif">
+                </div>
+                
+                <div class="fireworks" id="fireworks"></div>
+                <div class="explosion-hearts" id="explosionHearts"></div>
+                
+                <p class="celebration-subtitle">You just made me the happiest person alive!</p>
+                
+                <!-- Memory Photos Container with REAL couple images -->
+                <div class="memory-photos" id="memoryPhotos">
+                    <div class="memory-photo" data-photo="1">
+                        <img src="https://as2.ftcdn.net/v2/jpg/05/56/62/65/1000_F_556626587_NYmwKW2MRnrLQn6jSybCYhR6rdwcWIXl.jpg" alt="Memory 1" class="memory-img">
+                    </div>
+                    <div class="memory-photo" data-photo="2">
+                        <img src="https://tse3.mm.bing.net/th/id/OIP.K_cgaeAGOhVcuHtx5YcgPgHaNO?w=480&h=857&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Memory 2" class="memory-img">
+                    </div>
+                    <div class="memory-photo" data-photo="3">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.QMpKMrHeteoEGJsb_lYqswHaNO?w=480&h=857&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Memory 3" class="memory-img">
+                    </div>
+                    <div class="memory-photo" data-photo="4">
+                        <img src="https://i.pinimg.com/736x/88/06/84/880684593bc2f9d92ddd92d8e2cda90c.jpg" alt="Memory 4" class="memory-img">
+                    </div>
+                    <div class="memory-photo" data-photo="5">
+                        <img src="https://tse4.mm.bing.net/th/id/OIP.8KPT1p4Eh4Wgd1RrTQxQEQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Memory 5" class="memory-img">
+                    </div>
+                    <div class="memory-photo" data-photo="6">
+                        <img src="https://th.bing.com/th/id/R.3c37f9b6bb9359b822886b0a4ce0652a?rik=%2bP9Emf9PzgOqHg&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f07%2fCute-Anime-Couple-HD-Wallpapers.jpg&ehk=wxE5pgB8Gt9WcPISLiPosAl24gAPl69ioBbCjDimzuQ%3d&risl=&pid=ImgRaw&r=0" alt="Memory 6" class="memory-img">
+                    </div>
+                </div>
+                
+                <button class="next-journey-btn" id="nextJourneyBtn">
+                    Relive Our Beautiful Memories 📸
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gift Modal -->
+    <div class="gift-modal" id="giftModal">
+        <div class="gift-content">
+            <span class="gift-emoji" id="giftEmoji">💝</span>
+            <div class="gift-gif" id="giftGif"></div>
+            <h2 class="gift-title" id="giftTitle">Gift Title</h2>
+            <p class="gift-message" id="giftMessage">Gift message here...</p>
+            <button class="close-modal" id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

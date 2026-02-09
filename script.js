@@ -547,6 +547,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Celebration
 function celebrate() {
     const celebrationOverlay = document.getElementById('celebrationOverlay');
+    const proposalPhase = document.getElementById('phase4');
+    
+    // Add celebrating class to hide proposal content
+    proposalPhase.classList.add('celebrating');
+    
     celebrationOverlay.classList.add('active');
     
     // Random rotation for memory photos
